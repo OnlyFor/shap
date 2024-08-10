@@ -16,7 +16,7 @@ def test_scatter_single(explainer):
 @pytest.mark.mpl_image_compare
 def test_scatter_interaction(explainer):
     explanation = explainer(explainer.data)
-    shap.plots.scatter(explanation[:, "Age"], color=explanation, show=False)
+    shap.plots.scatter(explanation[:, "Age"], color=explanation[:, "Workclass"], show=False)
     fig = plt.gcf()
     plt.tight_layout()
     return fig
@@ -38,7 +38,7 @@ def test_scatter_custom(explainer):
     age = explanation[:, "Age"]
     shap.plots.scatter(
         age,
-        color=explanation,
+        color=explanation[:, "Workclass"],
         xmin=age.percentile(20),
         xmax=age.percentile(80),
         ymin=age.percentile(10),
