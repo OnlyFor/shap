@@ -41,7 +41,7 @@ jobs:
           - os: ubuntu-latest
             python-version: "3.12"
             extras: "test-core"
-      fail-fast: false
+      fail-fast: true  # TEMPORARY change to save time whilst getting 3.13 to pass
     runs-on: ${{ matrix.os }}
     timeout-minutes: 40
     steps:
@@ -50,6 +50,7 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
+          allow-prereleases: true
       - name: Install libomp (macOS)
         if: matrix.os == 'macos-latest'
         run: brew install libomp
