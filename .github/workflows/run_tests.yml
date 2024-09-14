@@ -57,9 +57,6 @@ jobs:
       - name: Install dependencies
         # Do regular install NOT editable install: see GH #3020
         run: |
-          echo "which python:"
-          which python
-          python --version
           python -m pip install --upgrade uv
           uv pip install --system '.[${{ matrix.extras }},plots]'
       - name: Test with pytest
